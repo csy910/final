@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="employee">
+	
+	<select id="getAllDepartments" resultType="java.util.HashMap">
+		select * from department order by did asc
+	</select>
+	
+	<select id="getAllPositions" resultType="java.util.HashMap">
+		select * from position order by pid asc
+	</select>
+	
+	<select id="getEmployeeSeq" resultType="java.lang.Integer">
+		select employee_seq.nextval from dual
+	</select>
+	
+	<insert id="addEmployee" parameterType="java.util.HashMap">
+		insert into employee values(#{id}, '1111', #{name}, #{did}, #{pid}, to_date(#{joindate}, 'YYYY-MM-DD'))
+	</insert>
+	
+		
+	
+</mapper>
+
+
+
+
+
+

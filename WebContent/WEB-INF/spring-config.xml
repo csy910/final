@@ -31,14 +31,15 @@
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:oracle:thin:@www.mockingu.com:1521:xe" />
-		<property name="username" value="dev" />
-		<property name="password" value="oracle" />
+			value="jdbc:oracle:thin:@cys.mockingu.com:1521:xe" />
+		<property name="username" value="cys" />
+		<property name="password" value="1234" />
 	</bean>
 	
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
+		<property name="mapperLocations" value="/WEB-INF/mappers/*.xml"/>
 	</bean>
 	<bean id="sqlTemplate"
 		class="org.mybatis.spring.SqlSessionTemplate">
