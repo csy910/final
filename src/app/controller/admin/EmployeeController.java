@@ -29,9 +29,11 @@ public class EmployeeController extends TextWebSocketHandler{
 		if(wr.getAttribute("auth", WebRequest.SCOPE_SESSION) == null) {
 			return "index";
 		}else {
+			System.out.println("a");
 			return "home";
 		}
 	}
+	
 	
 	@PostMapping("/login.do")
 	public String loginHandle(WebRequest wr, Map map) {
