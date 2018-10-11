@@ -18,6 +18,10 @@ public class EmployeeRepository {
 		return template.selectList("employee.getAllDepartments");
 	}
 	
+	public Map getAllEmployees(Map map) {
+		return template.selectOne("employee.getAllEmployees", map);
+	}
+	
 	public List<Map> getAllPositions() {
 		return template.selectList("employee.getAllPositions");
 	}

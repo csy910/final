@@ -9,6 +9,10 @@
 		select * from position order by pid asc
 	</select>
 	
+	<select id="getAllEmployees" resultType="java.util.HashMap">
+		select * from employee where id=#{id} and pass=#{pass}
+	</select>
+	
 	<select id="getEmployeeSeq" resultType="java.lang.Integer">
 		select employee_seq.nextval from dual
 	</select>
