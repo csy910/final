@@ -19,39 +19,12 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import app.model.EmployeeRepository;
 
 @Controller
+@RequestMapping("/admin/employee")
 public class EmployeeController extends TextWebSocketHandler{
 
 	@Autowired
 	EmployeeRepository employeeRepository;
 	
-	@GetMapping("/index.do")
-	public String indexHandle(WebRequest wr, ModelMap modelMap) {
-		if(wr.getAttribute("auth", WebRequest.SCOPE_SESSION) == null) {
-			return "index";
-		}else {
-			System.out.println("a");
-			return "home";
-		}
-	}
-	
-	
-	@PostMapping("/login.do")
-	public String loginHandle(WebRequest wr, Map map) {
-		String id = (String)wr.getParameter("getId");
-		String pass = (String)wr.getParameter("getPass");
-		Map mapp = new HashMap<>();
-		mapp.put("id", id);
-		mapp.put("pass", pass);
-		Map mappp = employeeRepository.getAllEmployees(mapp);
-		if(mappp != null) {
-			wr.setAttribute("id", id, WebRequest.SCOPE_SESSION);
-			wr.setAttribute("pass", pass, WebRequest.SCOPE_SESSION);
-			return "home";
-		}else {
-			wr.setAttribute("err", "true", 0);
-			return "index";
-		}
-	}
 	
 	@GetMapping("/add.do")
 	public String addGetHandle(ModelMap map) {

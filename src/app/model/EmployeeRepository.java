@@ -22,6 +22,10 @@ public class EmployeeRepository {
 		return template.selectOne("employee.getAllEmployees", map);
 	}
 	
+	public Map getEmployee(String id) {
+		return template.selectOne("employee.getEmployee", id);
+	}
+	
 	public List<Map> getAllPositions() {
 		return template.selectList("employee.getAllPositions");
 	}
@@ -32,5 +36,9 @@ public class EmployeeRepository {
 	
 	public int addEmployee(Map map) {
 		return template.insert("employee.addEmployee", map);
+	}
+	
+	public int changePassword(String id) {
+		return template.update("employee.changePassword", id);
 	}
 }

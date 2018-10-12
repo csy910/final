@@ -17,9 +17,21 @@
 		select employee_seq.nextval from dual
 	</select>
 	
+	<select id="getEmployee" parameterType="java.lang.String" resultType="java.util.HashMap">
+		select t.*, position.pname from
+			(select employee.*, department.dname from employee join department on employee.did = department.did ) t 
+		join position on t.pid = position.pid where id=#{id }
+	</select>
+	
 	<insert id="addEmployee" parameterType="java.util.HashMap">
 		insert into employee values(#{id}, '1111', #{name}, #{did}, #{pid}, to_date(#{joindate}, 'YYYY-MM-DD'))
 	</insert>
+	
+	<update id="changePassword" parameterType="java.lang.String">
+		update employee set pass=#{newPass2 } where id=#{id}
+	</update>
+	
+	
 	
 		
 	
