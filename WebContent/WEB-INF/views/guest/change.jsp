@@ -32,6 +32,16 @@
 			for="inputPassword" class="sr-only">새 비밀번호 재입력</label> <input
 			type="password" id="inputPassword" class="form-control" name="getPass3"
 			placeholder="새 비밀번호 재입력" required autofocus>
+			<c:if test="${!empty err }">
+			<div class="alert alert-danger" role="alert">
+				입력하신 비밀번호가 일치하지 않습니다.
+			</div>
+			</c:if>
+			<c:if test="${!empty err1 }">
+			<div class="alert alert-danger" role="alert">
+				기존의 비밀번호가 일치하지 않습니다.
+			</div>
+			</c:if>
 		<button class="btn btn-lg btn-primary btn-block" type="submit">비밀번호 변경</button>
 		<p class="mt-5 mb-3 text-muted">&copy; 2018 MOCKING CORP</p>
 	</form>

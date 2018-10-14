@@ -90,7 +90,7 @@ Map<String, HttpSession> sessions;
 		return "guest/change";
 	}
 	
-	@PostMapping("/change.do")
+	@PostMapping("/changed.do")
 	public String changedHandle(WebRequest wr, Map map) {
 		String id = (String)wr.getAttribute("userId", WebRequest.SCOPE_SESSION);
 		String oldPass = wr.getParameter("getPass1");
@@ -100,7 +100,22 @@ Map<String, HttpSession> sessions;
 		System.out.println(newPass1);
 		System.out.println(newPass2);
 		Map maps = employeeRepository.getEmployee(id);
-		return "guest.home";
+		if(oldPass.equals(maps.get("PASS"))) {
+			wr.removeAttribute("err1", 0);
+			if(newPass1.equals(newPass2)) {
+				maps.put("PASS", newPass1);
+				System.out.println(maps);
+				employeeRepository.changePassword(maps);
+				wr.removeAttribute("err", 0);
+				return "guest.home";
+			}else {
+				wr.setAttribute("err", true, 0);
+				return "guest/change";
+			}
+		}else {
+			wr.setAttribute("err1", true, 0);
+			return "guest/change";
+		}
 	}
 	
 	

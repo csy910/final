@@ -38,7 +38,8 @@ public class EmployeeRepository {
 		return template.insert("employee.addEmployee", map);
 	}
 	
-	public int changePassword(String id) {
-		return template.update("employee.changePassword", id);
+	public int changePassword(Map map) {
+		System.out.println(map);
+		return template.update("employee.changePassword", map);
 	}
 }
